@@ -131,7 +131,7 @@ header.topo{
   margin-bottom: 28px;
 }
 .logo-wrap img{
-  width: 180px;
+  width: 280px;
   max-width: 60vw;
   height: auto;
   display: inline-block;
@@ -396,6 +396,42 @@ p.subtitulo{
   min-height: 130px;
   resize: vertical;
 }
+.linha-pulso {
+  fill: none;
+  stroke: #00e676;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+
+  animation: ecg 2s linear infinite;
+}
+
+@keyframes ecg {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+@keyframes pulso {
+  0% {
+    stroke-dashoffset: 420;
+    opacity: 0.3;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
 .campo.erro input,
 .campo.erro textarea{
   border-color: #D64545;
@@ -658,7 +694,7 @@ footer .dev-por{
 <!-- ===================== CABEÇALHO ===================== -->
 <header class="topo container fade-in">
   <div class="logo-wrap">
-    <img src="assets/logovegas.png" alt="Logo Vegas Vigilância Patrimonial"
+    <img src="./assets/logovegas1.png" alt="Logo Vegas Vigilância Patrimonial"
          onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-flex';">
     <span id="logoFallback" class="logo-fallback" style="display:none;">
       <i class="fa-solid fa-shield-heart"></i> Vegas Vigilância Patrimonial
