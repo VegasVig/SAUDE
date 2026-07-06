@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saúde Preventiva no Trabalho | Vegas Vigilância Patrimonial</title>
+
+<!-- Google Fonts: Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ==========================================================================
+   1. RESET & BASE
+   ========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --azul: #6B6F73;
+  --azul-escuro: #4A4E52;
+  --verde: #9A9FA3;
+  --verde-claro: #ECEDEE;
+  --azul-claro: #E9EAEB;
+  --branco: #FFFFFF;
+  --cinza-claro: #F1F2F3;
+  --cinza-medio: #7C8085;
+  --texto: #3A3D40;
+  --sombra: 0 10px 30px rgba(60, 64, 68, 0.10);
+  --sombra-forte: 0 16px 40px rgba(60, 64, 68, 0.16);
+  --raio: 18px;
+  --raio-peq: 12px;
+  --transicao: .35s cubic-bezier(.4,0,.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body{
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto);
+  background: var(--cinza-claro);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+  html{ scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   2. FUNDO ABSTRATO (formas discretas em azul/verde)
+   ========================================================================== */
+.bg-shapes{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bg-shapes span{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .35;
+  animation: flutuar 18s ease-in-out infinite;
+}
+.bg-shapes span:nth-child(1){
+  width: 420px; height: 420px;
+  background: var(--azul);
+  top: -140px; left: -120px;
+  opacity: .12;
+}
+.bg-shapes span:nth-child(2){
+  width: 360px; height: 360px;
+  background: var(--verde);
+  top: 20%; right: -160px;
+  opacity: .12;
+  animation-delay: -6s;
+}
+.bg-shapes span:nth-child(3){
+  width: 300px; height: 300px;
+  background: var(--azul);
+  bottom: -100px; left: 10%;
+  opacity: .10;
+  animation-delay: -11s;
+}
+.bg-shapes span:nth-child(4){
+  width: 240px; height: 240px;
+  background: var(--verde);
+  bottom: 8%; right: 6%;
+  opacity: .10;
+  animation-delay: -3s;
+}
+@keyframes flutuar{
+  0%, 100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(24px,-30px) scale(1.06); }
+}
+
+/* ==========================================================================
+   3. LAYOUT GERAL / CONTAINER
+   ========================================================================== */
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.fade-in{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.fade-in.visivel{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. CABEÇALHO
+   ========================================================================== */
+header.topo{
+  padding: 56px 0 40px;
+  text-align: center;
+}
+.logo-wrap{
+  margin-bottom: 28px;
+}
+.logo-wrap img{
+  width: 180px;
+  max-width: 60vw;
+  height: auto;
+  display: inline-block;
+}
+.logo-fallback{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--azul);
+  letter-spacing: .02em;
+}
+.logo-fallback i{
+  color: var(--verde);
+  font-size: 1.5rem;
+}
+
+h1.titulo-principal{
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 14px;
+}
+p.subtitulo{
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 400;
+  color: var(--cinza-medio);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.monitor{
+  background:linear-gradient(160deg,#06231a,#0B3D2E 55%,#0a2f38);
+  border-radius:var(--r-lg);box-shadow:var(--sh-3);
+  border:1px solid rgba(255,255,255,.06);
+  padding:18px;position:relative;overflow:hidden;color:#fff;
+  display:flex;flex-direction:column;gap:14px;min-height:220px;
+}
+.monitor::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 3px)}
+.monitor__head{display:flex;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:12px}
+.monitor__head .bpm{display:flex;align-items:baseline;gap:6px;color:var(--green-live)}
+.monitor__head .bpm b{font-size:26px;font-weight:700;line-height:1}
+.heart{width:26px;height:26px;color:var(--alert);animation:beat 1s var(--ease) infinite}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.12)}56%{transform:scale(1)}}
+
+
+/* Divisor "pulso" — elemento assinatura do design, remete a monitoramento de saúde */
+.pulso-divisor{
+  width: 100%;
+  max-width: 420px;
+  margin: 32px auto 0;
+  height: 46px;
+}
+.pulso-divisor svg{ width: 100%; height: 100%; display: block; }
+.linha-pulso{
+  fill: none;
+  stroke: url(#gradientePulso);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: desenharPulso 2.6s ease-out forwards, pulsarBrilho 3.5s ease-in-out 2.6s infinite;
+}
+@keyframes desenharPulso{
+  to{ stroke-dashoffset: 0; }
+}
+@keyframes pulsarBrilho{
+  0%, 100%{ opacity: .55; }
+  50%{ opacity: 1; }
+}
+
+/* ==========================================================================
+   5. SEÇÕES — TÍTULOS PADRÃO
+   ========================================================================== */
+.secao{
+  padding: 48px 0;
+}
+.secao-titulo{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.secao-titulo .icone-titulo{
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--azul), var(--verde));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--branco);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: var(--sombra);
+}
+.secao-titulo h2{
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+.secao-titulo p{
+  font-size: .9rem;
+  color: var(--cinza-medio);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   6. CUIDADOS DIÁRIOS — GRID DE CARDS
+   ========================================================================== */
+.cuidados-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.cuidado-card{
+  background: var(--branco);
+  border-radius: var(--raio-peq);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sombra);
+  transition: transform var(--transicao), box-shadow var(--transicao);
+  border: 1px solid rgba(60,64,68,0.06);
+}
+.cuidado-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-forte);
+}
+.cuidado-imagem{
+  width: 100%;
+  height: 150px;
+  background: var(--cinza-claro);
+  overflow: hidden;
+}
+.cuidado-imagem img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.cuidado-card:hover .cuidado-imagem img{
+  transform: scale(1.06);
+}
+.cuidado-corpo{
+  padding: 20px 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.cuidado-icone{
+  width: 44px; height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  background: var(--azul-claro);
+  color: var(--azul);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem;
+  transition: background var(--transicao), color var(--transicao);
+}
+.cuidado-card:nth-child(even) .cuidado-icone{
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.cuidado-card:hover .cuidado-icone{
+  background: var(--azul);
+  color: var(--branco);
+}
+.cuidado-card:nth-child(even):hover .cuidado-icone{
+  background: var(--verde);
+  color: var(--branco);
+}
+.cuidado-titulo{
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin-bottom: 4px;
+}
+.cuidado-texto{
+  font-size: .88rem;
+  font-weight: 400;
+  color: var(--cinza-medio);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   7. CARD MOTIVACIONAL
+   ========================================================================== */
+.card-motivacional{
+  position: relative;
+  background: linear-gradient(120deg, var(--azul), var(--verde));
+  border-radius: var(--raio);
+  padding: 42px 36px;
+  text-align: center;
+  color: var(--branco);
+  box-shadow: var(--sombra-forte);
+  overflow: hidden;
+}
+.card-motivacional::before{
+  content: '\f004';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  font-size: 8rem;
+  opacity: .12;
+  top: -20px;
+  right: 10px;
+  transform: rotate(-12deg);
+}
+.card-motivacional p{
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 500;
+  font-style: italic;
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   8. FORMULÁRIO — GLASSMORPHISM
+   ========================================================================== */
+.form-card{
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--raio);
+  padding: 36px;
+  box-shadow: var(--sombra);
+}
+.campo{
+  margin-bottom: 22px;
+}
+.campo label{
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin-bottom: 8px;
+}
+.campo label i{ color: var(--verde); margin-right: 6px; width: 16px; }
+.campo input,
+.campo textarea{
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--raio-peq);
+  border: 1.5px solid rgba(60,64,68,0.15);
+  background: rgba(255,255,255,0.85);
+  font-family: 'Poppins', sans-serif;
+  font-size: .95rem;
+  color: var(--texto);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.campo input:focus,
+.campo textarea:focus{
+  outline: none;
+  border-color: var(--verde);
+  box-shadow: 0 0 0 4px rgba(90,95,99,0.14);
+}
+.campo textarea{
+  min-height: 130px;
+  resize: vertical;
+}
+.campo.erro input,
+.campo.erro textarea{
+  border-color: #D64545;
+  animation: tremer .4s ease;
+}
+.mensagem-erro{
+  display: none;
+  font-size: .78rem;
+  color: #D64545;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.campo.erro .mensagem-erro{ display: block; }
+@keyframes tremer{
+  0%, 100%{ transform: translateX(0); }
+  25%{ transform: translateX(-6px); }
+  75%{ transform: translateX(6px); }
+}
+
+.form-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+@media (max-width: 640px){
+  .form-grid{ grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   9. ASSINATURA
+   ========================================================================== */
+.assinatura-card{
+  background: var(--branco);
+  border-radius: var(--raio);
+  padding: 32px 36px 36px;
+  box-shadow: var(--sombra);
+  margin-top: 24px;
+}
+.assinatura-card h3{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+.assinatura-card h3 i{ color: var(--verde); }
+.assinatura-card > p{
+  font-size: .85rem;
+  color: var(--cinza-medio);
+  margin-bottom: 16px;
+}
+.canvas-wrap{
+  border: 2px dashed rgba(60,64,68,0.25);
+  border-radius: var(--raio-peq);
+  background: var(--cinza-claro);
+  overflow: hidden;
+  touch-action: none;
+}
+#canvasAssinatura{
+  width: 100%;
+  height: 200px;
+  display: block;
+  cursor: crosshair;
+  background: var(--branco);
+}
+.assinatura-botoes{
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.assinatura-status{
+  margin-top: 14px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--verde);
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.assinatura-status.mostrar{ display: flex; }
+
+/* ==========================================================================
+   10. BOTÕES
+   ========================================================================== */
+.btn{
+  border: none;
+  border-radius: 50px;
+  padding: 13px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform var(--transicao), box-shadow var(--transicao), background var(--transicao);
+}
+.btn:active{ transform: translateY(1px) scale(.98); }
+
+.btn-secundario{
+  background: var(--branco);
+  color: var(--azul);
+  border: 1.5px solid rgba(60,64,68,0.25);
+}
+.btn-secundario:hover{
+  background: var(--azul-claro);
+  box-shadow: var(--sombra);
+}
+.btn-primario{
+  background: var(--verde);
+  color: var(--branco);
+  box-shadow: 0 8px 20px rgba(90,95,99,0.30);
+}
+.btn-primario:hover{
+  background: #4A4E52;
+  box-shadow: 0 10px 26px rgba(90,95,99,0.40);
+  transform: translateY(-2px);
+}
+
+.btn-final{
+  width: 100%;
+  justify-content: center;
+  background: linear-gradient(120deg, var(--azul), var(--verde));
+  color: var(--branco);
+  padding: 18px 28px;
+  font-size: 1.05rem;
+  border-radius: var(--raio-peq);
+  box-shadow: var(--sombra-forte);
+}
+.btn-final:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(60,64,68,0.35);
+}
+
+/* ==========================================================================
+   11. DECLARAÇÃO
+   ========================================================================== */
+.declaracao-box{
+  background: var(--azul-claro);
+  border-left: 4px solid var(--azul);
+  border-radius: var(--raio-peq);
+  padding: 26px 28px;
+  margin: 28px 0;
+  font-size: .95rem;
+  color: var(--azul-escuro);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.declaracao-box i{
+  font-size: 1.4rem;
+  color: var(--azul);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   12. MODAL
+   ========================================================================== */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(40,42,44,0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  padding: 20px;
+}
+.modal-overlay.ativo{
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-caixa{
+  background: var(--branco);
+  border-radius: var(--raio);
+  padding: 44px 38px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+  transform: scale(.85) translateY(20px);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.ativo .modal-caixa{
+  transform: scale(1) translateY(0);
+}
+.modal-icone{
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 20px;
+  animation: pipocar .5s ease .1s backwards;
+}
+@keyframes pipocar{
+  0%{ transform: scale(0); }
+  70%{ transform: scale(1.15); }
+  100%{ transform: scale(1); }
+}
+.modal-caixa h3{
+  font-size: 1.4rem;
+  color: var(--azul-escuro);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.modal-caixa p{
+  color: var(--cinza-medio);
+  font-size: .95rem;
+  margin-bottom: 26px;
+}
+
+/* ==========================================================================
+   13. RODAPÉ
+   ========================================================================== */
+footer{
+  text-align: center;
+  padding: 40px 24px 50px;
+  color: var(--cinza-medio);
+  font-size: .85rem;
+}
+footer strong{ color: var(--azul-escuro); }
+footer .separador-rodape{
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--azul), var(--verde));
+  border-radius: 4px;
+  margin: 0 auto 16px;
+}
+footer .dev-por{
+  margin-top: 8px;
+  font-size: .78rem;
+  opacity: .75;
+}
+
+/* ==========================================================================
+   14. RESPONSIVIDADE GERAL
+   ========================================================================== */
+@media (max-width: 560px){
+  .secao{ padding: 34px 0; }
+  .form-card, .assinatura-card{ padding: 26px 20px; }
+  .card-motivacional{ padding: 32px 22px; }
+  .assinatura-botoes{ flex-direction: column; }
+  .assinatura-botoes .btn{ width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Formas abstratas de fundo -->
+<div class="bg-shapes" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- ===================== CABEÇALHO ===================== -->
+<header class="topo container fade-in">
+  <div class="logo-wrap">
+    <img src="assets/logovegas.png" alt="Logo Vegas Vigilância Patrimonial"
+         onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-flex';">
+    <span id="logoFallback" class="logo-fallback" style="display:none;">
+      <i class="fa-solid fa-shield-heart"></i> Vegas Vigilância Patrimonial
+    </span>
+  </div>
+  <h1 class="titulo-principal">Saúde Preventiva no Trabalho</h1>
+  <p class="subtitulo">Cuidar da saúde é investir na qualidade de vida, na segurança e no bem-estar de todos.</p>
+
+  <!-- Divisor "pulso" (elemento de assinatura visual) -->
+  <div class="pulso-divisor" aria-hidden="true">
+    <svg viewBox="0 0 400 46" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradientePulso" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#6B6F73"/>
+          <stop offset="100%" stop-color="#9A9FA3"/>
+        </linearGradient>
+      </defs>
+      <path class="linha-pulso" d="M0,23 L110,23 L130,6 L150,40 L170,23 L190,23 L205,10 L220,23 L400,23"/>
+    </svg>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ===================== CUIDADOS DIÁRIOS ===================== -->
+  <section class="secao fade-in" id="cuidados">
+    <div class="secao-titulo">
+      <div class="icone-titulo"><i class="fa-solid fa-heart-pulse"></i></div>
+      <div>
+        <h2>Cuidados diários</h2>
+        <p>Pequenos hábitos que fazem grande diferença na sua rotina</p>
+      </div>
+    </div>
+    <div class="cuidados-grid">
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/postura.jpg" alt="Postura correta no trabalho" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-chair"></i></div>
+          <div>
+            <div class="cuidado-titulo">Manter boa postura</div>
+            <div class="cuidado-texto">Ajuste a altura da cadeira, mantenha as costas apoiadas e evite curvar a coluna por longos períodos. Isso previne dores lombares e problemas na coluna a longo prazo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/agua.jpg" alt="Hidratação frequente" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-droplet"></i></div>
+          <div>
+            <div class="cuidado-titulo">Hidratar-se frequentemente</div>
+            <div class="cuidado-texto">Beba água ao longo de todo o turno, mesmo sem sentir muita sede. A boa hidratação melhora a concentração, o ânimo e evita dores de cabeça e cansaço.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/alimentos.jpg" alt="Alimentação saudável" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-utensils"></i></div>
+          <div>
+            <div class="cuidado-titulo">Alimentar-se adequadamente</div>
+            <div class="cuidado-texto">Priorize refeições equilibradas, com horários regulares. Evite pular refeições durante o turno, pois isso afeta a energia, o humor e a atenção no trabalho.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/dormir.jpg" alt="Sono de qualidade" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-bed"></i></div>
+          <div>
+            <div class="cuidado-titulo">Dormir bem</div>
+            <div class="cuidado-texto">Busque de 7 a 8 horas de sono por noite e mantenha uma rotina regular de descanso. O sono de qualidade é essencial para a recuperação física e mental.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/alongamento.jpg" alt="Alongamento no trabalho" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-child-reaching"></i></div>
+          <div>
+            <div class="cuidado-titulo">Fazer alongamentos</div>
+            <div class="cuidado-texto">Reserve alguns minutos durante o expediente para alongar pescoço, braços e pernas. Isso alivia tensões musculares e reduz o risco de lesões por esforço repetitivo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/epi.jpg" alt="Uso correto de EPIs" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-hard-hat"></i></div>
+          <div>
+            <div class="cuidado-titulo">Utilizar corretamente os EPIs</div>
+            <div class="cuidado-texto">Use sempre os equipamentos de proteção individual fornecidos, verificando se estão em bom estado. Eles são a principal barreira contra acidentes de trabalho.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/descanso.jpg" alt="Pausas durante o trabalho" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-mug-hot"></i></div>
+          <div>
+            <div class="cuidado-titulo">Respeitar as pausas</div>
+            <div class="cuidado-texto">Aproveite os intervalos para descansar de verdade, sem celular ou telas. Pausas regulares recuperam o foco e reduzem a fadiga ao longo do turno.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/risco.jpg" alt="Comunicação de riscos" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div>
+            <div class="cuidado-titulo">Comunicar condições de risco</div>
+            <div class="cuidado-texto">Informe imediatamente ao seu supervisor qualquer situação, equipamento ou ambiente que ofereça risco. A comunicação rápida evita acidentes e protege toda a equipe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/fisica.jpg" alt="Atividade física regular" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-person-running"></i></div>
+          <div>
+            <div class="cuidado-titulo">Praticar atividade física</div>
+            <div class="cuidado-texto">Inclua exercícios na sua rotina, mesmo que simples, como caminhadas. A prática regular fortalece o corpo, melhora o condicionamento e reduz o estresse.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cuidado-card">
+        <div class="cuidado-imagem"><img src="./assets/mental.jpg" alt="Cuidado com a saúde mental" loading="lazy" onerror="this.parentElement.style.display='none';"></div>
+        <div class="cuidado-corpo">
+          <div class="cuidado-icone"><i class="fa-solid fa-brain"></i></div>
+          <div>
+            <div class="cuidado-titulo">Cuidar da saúde mental</div>
+            <div class="cuidado-texto">Fale sobre suas emoções, busque apoio quando precisar e respeite seus limites. Cuidar da mente é tão importante quanto cuidar do corpo.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MENSAGEM MOTIVACIONAL ===================== -->
+  <section class="secao fade-in">
+    <div class="card-motivacional">
+      <p>"A prevenção salva vidas. Pequenas atitudes hoje fazem uma grande diferença amanhã."</p>
+    </div>
+  </section>
+
+  <!-- ===================== FORMULÁRIO ===================== -->
+  <section class="secao fade-in" id="formulario">
+    <div class="secao-titulo">
+      <div class="icone-titulo"><i class="fa-solid fa-clipboard-list"></i></div>
+      <div>
+        <h2>Registro de Participação</h2>
+        <p>Preencha seus dados para confirmar sua presença na orientação</p>
+      </div>
+    </div>
+
+    <form class="form-card" id="formParticipacao" novalidate>
+      <div class="campo" id="campoNome">
+        <label for="nomeCompleto"><i class="fa-solid fa-user"></i>Nome completo</label>
+        <input type="text" id="nomeCompleto" placeholder="Digite seu nome completo" autocomplete="name">
+        <span class="mensagem-erro">Nome é obrigatório.</span>
+      </div>
+
+      <div class="form-grid">
+        <div class="campo" id="campoCpf">
+          <label for="cpf"><i class="fa-solid fa-id-card"></i>CPF</label>
+          <input type="text" id="cpf" placeholder="000.000.000-00" inputmode="numeric" maxlength="14">
+          <span class="mensagem-erro">CPF é obrigatório.</span>
+        </div>
+
+        <div class="campo" id="campoPosto">
+          <label for="posto"><i class="fa-solid fa-building-shield"></i>Posto de Serviço</label>
+          <input type="text" id="posto" placeholder="Ex: Posto Central">
+          <span class="mensagem-erro">Posto de Serviço é obrigatório.</span>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="comentarios"><i class="fa-solid fa-comment-dots"></i>Comentários (opcional)</label>
+        <textarea id="comentarios" placeholder="Deixe aqui sugestões, dúvidas ou observações..."></textarea>
+      </div>
+    </form>
+
+    <!-- ===================== ASSINATURA ===================== -->
+    <div class="assinatura-card" id="campoAssinatura">
+      <h3><i class="fa-solid fa-signature"></i>Assinatura do Colaborador</h3>
+      <p>Desenhe sua assinatura no quadro abaixo utilizando o mouse ou o dedo (touch).</p>
+
+      <div class="canvas-wrap">
+        <canvas id="canvasAssinatura"></canvas>
+      </div>
+
+      <div class="assinatura-botoes">
+        <button type="button" class="btn btn-secundario" id="btnLimpar"><i class="fa-solid fa-eraser"></i>Limpar Assinatura</button>
+        <button type="button" class="btn btn-primario" id="btnSalvar"><i class="fa-solid fa-floppy-disk"></i>Salvar Assinatura</button>
+      </div>
+
+      <div class="assinatura-status" id="statusAssinatura">
+        <i class="fa-solid fa-circle-check"></i> Assinatura registrada com sucesso.
+      </div>
+      <span class="mensagem-erro" id="erroAssinatura">Assinatura é obrigatória. Desenhe e clique em "Salvar Assinatura".</span>
+    </div>
+
+    <!-- ===================== DECLARAÇÃO ===================== -->
+    <div class="declaracao-box">
+      <i class="fa-solid fa-file-shield"></i>
+      <span>Declaro que participei da orientação sobre Saúde Preventiva no Trabalho, compreendi as informações apresentadas e me comprometo a colaborar para um ambiente de trabalho mais seguro e saudável.</span>
+    </div>
+
+    <!-- ===================== BOTÃO FINAL ===================== -->
+    <button type="button" class="btn btn-final" id="btnConfirmar">
+      <i class="fa-solid fa-circle-check"></i> Confirmar Participação
+    </button>
+  </section>
+
+</main>
+
+<!-- ===================== MODAL DE SUCESSO ===================== -->
+<div class="modal-overlay" id="modalSucesso">
+  <div class="modal-caixa">
+    <div class="modal-icone"><i class="fa-solid fa-check"></i></div>
+    <h3>Obrigado!</h3>
+    <p>Sua participação foi registrada com sucesso.</p>
+    <button type="button" class="btn btn-primario" id="btnFecharModal" style="width:100%; justify-content:center;">Fechar</button>
+  </div>
+</div>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer>
+  <div class="separador-rodape"></div>
+  <div>© <strong>Vegas Vigilância Patrimonial</strong></div>
+  <div>Saúde Preventiva no Trabalho</div>
+  <div class="dev-por">Desenvolvido por André Cruz</div>
+</footer>
+
+<script>
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS
+   ========================================================================== */
+/* ==========================================================================
+   INTEGRAÇÃO COM GOOGLE SHEETS
+   Cole aqui a URL do seu Google Apps Script publicado como "Web App".
+   Veja o arquivo GoogleAppsScript.gs e as instruções enviadas junto com
+   este arquivo para saber como criar e publicar o script.
+   ========================================================================== */
+const URL_GOOGLE_SHEETS = "COLE_AQUI_A_URL_DO_SEU_APP_SCRIPT";
+
+let assinaturaBase64 = null;   // Armazena a assinatura convertida em Base64
+let desenhando = false;
+let assinaturaPossuiTraco = false;
+let ultimoX = 0, ultimoY = 0;
+
+const canvas = document.getElementById('canvasAssinatura');
+const ctx = canvas.getContext('2d');
+
+/* ==========================================================================
+   FUNÇÃO: Ajustar resolução do canvas ao tamanho exibido em tela
+   ========================================================================== */
+function ajustarCanvas(){
+  const proporcaoTela = window.devicePixelRatio || 1;
+  const retangulo = canvas.getBoundingClientRect();
+
+  // Preserva o desenho existente ao redimensionar
+  const desenhoAnterior = canvas.toDataURL();
+
+  canvas.width = retangulo.width * proporcaoTela;
+  canvas.height = retangulo.height * proporcaoTela;
+  ctx.scale(proporcaoTela, proporcaoTela);
+  ctx.lineWidth = 2.4;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#4A4E52';
+
+  if (assinaturaPossuiTraco){
+    const img = new Image();
+    img.onload = () => ctx.drawImage(img, 0, 0, retangulo.width, retangulo.height);
+    img.src = desenhoAnterior;
+  }
+}
+
+/* ==========================================================================
+   FUNÇÃO: Obter coordenadas do ponteiro (mouse ou touch) relativas ao canvas
+   ========================================================================== */
+function obterPosicao(evento){
+  const retangulo = canvas.getBoundingClientRect();
+  if (evento.touches && evento.touches.length > 0){
+    return {
+      x: evento.touches[0].clientX - retangulo.left,
+      y: evento.touches[0].clientY - retangulo.top
+    };
+  }
+  return {
+    x: evento.clientX - retangulo.left,
+    y: evento.clientY - retangulo.top
+  };
+}
+
+/* ==========================================================================
+   FUNÇÃO: Iniciar traço
+   ========================================================================== */
+function iniciarTraco(evento){
+  evento.preventDefault();
+  desenhando = true;
+  const pos = obterPosicao(evento);
+  ultimoX = pos.x;
+  ultimoY = pos.y;
+}
+
+/* ==========================================================================
+   FUNÇÃO: Desenhar traço enquanto move o ponteiro
+   ========================================================================== */
+function desenharTraco(evento){
+  if (!desenhando) return;
+  evento.preventDefault();
+  const pos = obterPosicao(evento);
+
+  ctx.beginPath();
+  ctx.moveTo(ultimoX, ultimoY);
+  ctx.lineTo(pos.x, pos.y);
+  ctx.stroke();
+
+  ultimoX = pos.x;
+  ultimoY = pos.y;
+  assinaturaPossuiTraco = true;
+
+  // Ao desenhar novamente, esconde mensagens de status antigas
+  esconderStatusAssinatura();
+}
+
+/* ==========================================================================
+   FUNÇÃO: Finalizar traço
+   ========================================================================== */
+function finalizarTraco(){
+  desenhando = false;
+}
+
+/* ==========================================================================
+   FUNÇÃO: Limpar assinatura
+   ========================================================================== */
+function limparAssinatura(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  assinaturaPossuiTraco = false;
+  assinaturaBase64 = null;
+  esconderStatusAssinatura();
+  document.getElementById('campoAssinatura').classList.remove('erro');
+}
+
+/* ==========================================================================
+   FUNÇÃO: Salvar assinatura (converter para Base64)
+   ========================================================================== */
+function salvarAssinatura(){
+  if (!assinaturaPossuiTraco){
+    document.getElementById('campoAssinatura').classList.add('erro');
+    return;
+  }
+  assinaturaBase64 = canvas.toDataURL('image/png');
+  document.getElementById('campoAssinatura').classList.remove('erro');
+  mostrarStatusAssinatura();
+}
+
+function mostrarStatusAssinatura(){
+  document.getElementById('statusAssinatura').classList.add('mostrar');
+}
+function esconderStatusAssinatura(){
+  document.getElementById('statusAssinatura').classList.remove('mostrar');
+}
+
+/* ==========================================================================
+   FUNÇÃO: Máscara de CPF (000.000.000-00)
+   ========================================================================== */
+function aplicarMascaraCPF(valor){
+  valor = valor.replace(/\D/g, '').slice(0, 11);
+  valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+  valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+  valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  return valor;
+}
+
+/* ==========================================================================
+   FUNÇÃO: Marcar/limpar erro visual de um campo
+   ========================================================================== */
+function marcarErro(idCampo, temErro){
+  const campo = document.getElementById(idCampo);
+  if (temErro){
+    campo.classList.add('erro');
+  } else {
+    campo.classList.remove('erro');
+  }
+}
+
+/* ==========================================================================
+   FUNÇÃO: Validar formulário completo
+   ========================================================================== */
+function validarFormulario(){
+  let valido = true;
+
+  const nome = document.getElementById('nomeCompleto').value.trim();
+  const cpf = document.getElementById('cpf').value.trim();
+  const posto = document.getElementById('posto').value.trim();
+
+  marcarErro('campoNome', nome === '');
+  if (nome === '') valido = false;
+
+  marcarErro('campoCpf', cpf === '');
+  if (cpf === '') valido = false;
+
+  marcarErro('campoPosto', posto === '');
+  if (posto === '') valido = false;
+
+  const assinaturaValida = assinaturaBase64 !== null;
+  document.getElementById('erroAssinatura').style.display = assinaturaValida ? 'none' : 'block';
+  if (!assinaturaValida){
+    document.getElementById('campoAssinatura').classList.add('erro');
+    valido = false;
+  }
+
+  return valido;
+}
+
+/* ==========================================================================
+   FUNÇÃO: Abrir / Fechar modal de sucesso
+   ========================================================================== */
+function abrirModal(){
+  document.getElementById('modalSucesso').classList.add('ativo');
+}
+function fecharModal(){
+  document.getElementById('modalSucesso').classList.remove('ativo');
+}
+
+/* ==========================================================================
+   FUNÇÃO: Enviar dados do formulário para o Google Sheets (via Apps Script)
+   ========================================================================== */
+async function enviarParaGoogleSheets(dados){
+  if (!URL_GOOGLE_SHEETS || URL_GOOGLE_SHEETS.includes('COLE_AQUI')){
+    console.warn('URL do Google Apps Script não configurada. Os dados não foram enviados para o Google Sheets.');
+    return;
+  }
+  await fetch(URL_GOOGLE_SHEETS, {
+    method: 'POST',
+    mode: 'no-cors', // necessário para Apps Script; não permite ler a resposta
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(dados)
+  });
+}
+
+/* ==========================================================================
+   FUNÇÃO: Confirmar participação
+   ========================================================================== */
+async function confirmarParticipacao(){
+  const formularioValido = validarFormulario();
+  if (!formularioValido){
+    const primeiroErro = document.querySelector('.erro');
+    if (primeiroErro){
+      primeiroErro.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
+
+  const botao = document.getElementById('btnConfirmar');
+  const textoOriginalBotao = botao.innerHTML;
+  botao.disabled = true;
+  botao.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+  const dados = {
+    nomeCompleto: document.getElementById('nomeCompleto').value.trim(),
+    cpf: document.getElementById('cpf').value.trim(),
+    posto: document.getElementById('posto').value.trim(),
+    comentarios: document.getElementById('comentarios').value.trim(),
+    assinatura: assinaturaBase64,
+    dataHora: new Date().toLocaleString('pt-BR')
+  };
+
+  try{
+    await enviarParaGoogleSheets(dados);
+  } catch(erro){
+    console.error('Erro ao enviar dados para o Google Sheets:', erro);
+  } finally {
+    botao.disabled = false;
+    botao.innerHTML = textoOriginalBotao;
+  }
+
+  abrirModal();
+}
+
+/* ==========================================================================
+   FUNÇÃO: Animação de fade-in ao rolar a página
+   ========================================================================== */
+function iniciarObservadorFadeIn(){
+  const elementos = document.querySelectorAll('.fade-in');
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      if (entrada.isIntersecting){
+        entrada.target.classList.add('visivel');
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  elementos.forEach((el) => observador.observe(el));
+}
+
+/* ==========================================================================
+   INICIALIZAÇÃO
+   ========================================================================== */
+function inicializar(){
+  // Canvas de assinatura
+  ajustarCanvas();
+  window.addEventListener('resize', ajustarCanvas);
+
+  canvas.addEventListener('mousedown', iniciarTraco);
+  canvas.addEventListener('mousemove', desenharTraco);
+  canvas.addEventListener('mouseup', finalizarTraco);
+  canvas.addEventListener('mouseleave', finalizarTraco);
+
+  canvas.addEventListener('touchstart', iniciarTraco, { passive: false });
+  canvas.addEventListener('touchmove', desenharTraco, { passive: false });
+  canvas.addEventListener('touchend', finalizarTraco);
+
+  // Botões de assinatura
+  document.getElementById('btnLimpar').addEventListener('click', limparAssinatura);
+  document.getElementById('btnSalvar').addEventListener('click', salvarAssinatura);
+
+  // Máscara de CPF
+  document.getElementById('cpf').addEventListener('input', (evento) => {
+    evento.target.value = aplicarMascaraCPF(evento.target.value);
+    marcarErro('campoCpf', false);
+  });
+
+  // Remove erro visual ao digitar
+  document.getElementById('nomeCompleto').addEventListener('input', () => marcarErro('campoNome', false));
+  document.getElementById('posto').addEventListener('input', () => marcarErro('campoPosto', false));
+
+  // Botão de confirmação
+  document.getElementById('btnConfirmar').addEventListener('click', confirmarParticipacao);
+
+  // Modal
+  document.getElementById('btnFecharModal').addEventListener('click', fecharModal);
+  document.getElementById('modalSucesso').addEventListener('click', (evento) => {
+    if (evento.target.id === 'modalSucesso') fecharModal();
+  });
+
+  // Animações de entrada
+  iniciarObservadorFadeIn();
+}
+
+document.addEventListener('DOMContentLoaded', inicializar);
+</script>
+
+</body>
+</html>
